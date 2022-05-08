@@ -34,6 +34,14 @@ namespace BethanysPieShop
             //need to register the created interface and repository.
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            //this will run if a user comes to my site to check if it has existing session.
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
+            //will give us access to the session
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
             services.AddControllersWithViews();
         }
 
@@ -47,6 +55,8 @@ namespace BethanysPieShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

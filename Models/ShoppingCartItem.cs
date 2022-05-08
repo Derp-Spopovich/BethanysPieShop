@@ -12,7 +12,7 @@ namespace BethanysPieShop.Models
         public Pie Pie { get; set; }
 
         public int Amount { get; set; }
-
+        //imagine this is a session ShoppingCartId
         public string ShoppingCartId { get; set; }
     }
 }
